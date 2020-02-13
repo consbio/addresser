@@ -4,7 +4,7 @@ from setuptools import setup
 
 import addresser
 
-with open(os.path.join(os.path.dirname(__file__), 'README.rst'), 'r') as f:
+with open(os.path.join(os.path.dirname(__file__), "README.rst"), "r") as f:
     long_description = f.read()
 
 setup(

@@ -34,11 +34,11 @@ def _normalize_address(parts=None):
         except KeyError:
             continue
 
-    if parsed.get('city') is not None:
+    if parsed.get("city") is not None:
         parsed["city"] = re.sub(
             r"^(?P<dircode>{dircode})\s+(?=\S)".format(**ADDR_MATCH),
             lambda x: DIRECTION_CODE[x["dircode"].upper()].capitalize() + " ",
-            parsed['city'],
+            parsed["city"],
             flags=re.I | re.X,
         )
 
@@ -46,40 +46,40 @@ def _normalize_address(parts=None):
 
 
 def _parse_po_address(address):
-    match = ADDR_MATCH['po_address'].search(address)
+    match = ADDR_MATCH["po_address"].search(address)
     return match and _normalize_address(match.groupdict())
 
 
 def parse_address(address):
-    match = ADDR_MATCH['address'].search(address)
+    match = ADDR_MATCH["address"].search(address)
     return match and _normalize_address(match.groupdict())
 
 
 def parse_informal_address(address):
-    match = ADDR_MATCH['informal_address'].search(address)
+    match = ADDR_MATCH["informal_address"].search(address)
     return match and _normalize_address(match.groupdict())
 
 
 def parse_intersection(address):
-    match = ADDR_MATCH['intersection'].search(address)
+    match = ADDR_MATCH["intersection"].search(address)
     parts = match and _normalize_address(match.groupdict())
 
     if parts:
-        parts['type2'] = parts.get('type2') or ''
-        parts['type1'] = parts.get('type1') or ''
-        if parts['type2'] and not parts['type1'] or (parts['type1'] == parts['type2']):
-            type_ = re.sub(r's\W*$', '', parts['type2'])
-            if re.search(r'^{}$'.format(ADDR_MATCH['type']), type_, re.X | re.I):
-                parts['type1'] = parts['type2'] = type_
+        parts["type2"] = parts.get("type2") or ""
+        parts["type1"] = parts.get("type1") or ""
+        if parts["type2"] and not parts["type1"] or (parts["type1"] == parts["type2"]):
+            type_ = re.sub(r"s\W*$", "", parts["type2"])
+            if re.search(r"^{}$".format(ADDR_MATCH["type"]), type_, re.X | re.I):
+                parts["type1"] = parts["type2"] = type_
 
     return parts
 
 
 def parse_location(address):
-    if re.search(ADDR_MATCH['corner'], address, re.X | re.I):
+    if re.search(ADDR_MATCH["corner"], address, re.X | re.I):
         return parse_intersection(address)
 
-    if re.search(r'^' + ADDR_MATCH['po_box'], address, re.X | re.I):
+    if re.search(r"^" + ADDR_MATCH["po_box"], address, re.X | re.I):
         return _parse_po_address(address)
 
     return parse_address(address) or parse_informal_address(address)
