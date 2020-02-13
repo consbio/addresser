@@ -6,6 +6,7 @@ Addresser parses and normalizes street addresses and intersections. It is a port
 `Geo::StreetAddress::US <http://search.cpan.org/~timb/Geo-StreetAddress-US-1.04/US.pm>`_.
 
 From the `Geo::StreetAddress::US` description:
+
     Geo::StreetAddress::US is a regex-based street address and street intersection parser for the United States. Its
     basic goal is to be as forgiving as possible when parsing user-provided address strings. Geo::StreetAddress::US knows
     about directional prefixes and suffixes, fractional building numbers, building units, grid-based addresses (such as
@@ -30,7 +31,7 @@ Usage
 
     parse_location('1005 N Gravenstein Highway Sebastopol CA 95472')
 
-** Result **
+**Result**
 
 .. code-block:: python
 
