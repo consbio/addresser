@@ -183,7 +183,7 @@ ADDR_MATCH["intersection"] = re.compile(
 ^\W*
 {street_replaced_1}\W*?
 \s+{corner}\s+
-{street_replaced_2}\W+
+{street_replaced_2}($|\W+)
 {place}\W*$
 """.format(
         street_replaced_1=re.sub(r"_\d", r"1\g<0>", ADDR_MATCH["street"]),
