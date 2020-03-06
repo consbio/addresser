@@ -116,6 +116,8 @@ ADDRESSES = {
         "city": "San Francisco",
         "state": "CA",
     },
+    "145 Los Banos": {"number": "145", "street": "Los Banos"},
+    "Los Banos": {"street": "Los Banos"},
     "7800 Mill Station Rd, Sebastopol, CA 95472": {
         "number": "7800",
         "street": "Mill Station",

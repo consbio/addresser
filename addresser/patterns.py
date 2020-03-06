@@ -156,6 +156,7 @@ ADDR_MATCH["informal_address"] = re.compile(
     {street_plus_sep}
 (?:{sec_unit_replaced})?
 (?:{place})?
+\W*$
 """.format(
         sec_unit_plus_sep=ADDR_MATCH["sec_unit"] + SEP,
         street_plus_sep=ADDR_MATCH["street"] + SEP,
