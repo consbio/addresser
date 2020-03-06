@@ -5,5 +5,5 @@ from .parser import (
     parse_address,
 )
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 __all__ = [parse_location, parse_location, parse_informal_address, parse_address]
