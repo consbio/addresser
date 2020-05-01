@@ -114,8 +114,14 @@ ADDR_MATCH[
     "city_and_state"
 ] = r"""
 (?:
-    (?P<city>[^\d,]+?)\W+
-    (?P<state>{state})
+    (?:
+        (?P<city_1>[^\d,]+?)\W+
+        (?P<state>{state})
+    )
+    |
+    (?:
+        ,\W+(?P<city_2>[^\d,]+?)
+    )
 )
 """.format(
     **ADDR_MATCH
@@ -136,8 +142,8 @@ ADDR_MATCH["address"] = re.compile(
 [^\w#]*
 ({number})\W*
 (?:{fraction}\W*)?
-    {street}\W+
-(?:{sec_unit})?\W*
+    {street}
+(?:\W+{sec_unit})?(\W+|(?=,))
     {place}
 \W*$
 """.format(

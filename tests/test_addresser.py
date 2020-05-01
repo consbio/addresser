@@ -35,6 +35,13 @@ ADDRESSES = {
         "city": "Sebastopol",
         "state": "CA",
     },
+    "1005 N Gravenstein Highway, Sebastopol": {
+        "number": "1005",
+        "prefix": "N",
+        "street": "Gravenstein",
+        "type": "Hwy",
+        "city": "Sebastopol"
+    },
     "1005 N Gravenstein Highway, Suite 500, Sebastopol, CA": {
         "number": "1005",
         "prefix": "N",
@@ -587,4 +594,8 @@ ADDRESSES = {
 def test_addresses():
     for address, check in ADDRESSES.items():
         parsed = parse_location(address)
-        assert parsed == check
+        try:
+            assert parsed == check
+        except AssertionError:
+            print(address)
+            raise
